@@ -14,7 +14,7 @@ user = 'Josko';
 if user == 'Josko'
 	if JoskoInit ~= 1
 	    %Start in git repository
-	    cd('H:\My Documents\GitHub\KymoCode');
+	    cd('C:\GitHub\KymoCode');
 	    % Add the paths of the supporting functions.
 	    addpath('SupportingFunctions');
 	    addpath('ExperimentSpecificSettings'); 
