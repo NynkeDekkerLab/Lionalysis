@@ -33,6 +33,9 @@ while ratio<sigchange     %if not too much changes anymore; the higher this numb
     av=nanmedian(data(selc));       %since we expect skewed distribution, we use the median iso the mea     
     sigma=nanstd(data(selc));
     ratio=sigma/sigma_old;
+    if length(av) == 0
+        av = 0
+    end
     switch how
         case 'positive',  flag=(data-av)<tolerance*sigma;     %adjust outlier flags
         case 'all',  flag=abs(data-av)<tolerance*sigma;     %adjust outlier flags  

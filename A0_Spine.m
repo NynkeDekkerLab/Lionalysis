@@ -54,7 +54,7 @@ close all
 
 fprintf('End of section.\n\n\n');
 %% Section in Matlab. The goal of this particular section is printed on the next line.
-fprintf('Loading A060: Replication Cluster.\n This module identifies the loading and unloading events of DnaN in time and space via a series of user inputs.\n A060 prompts the user to click on a set of points on the Kymograph.\n First, the user clicks on the localization point of a DnaN spot, which first becomes visible.\n Thereafter, the user clicks to identify the delocalization point of DnaN in hte same cell, where the fluorescence spot disappears (indicative of replication termination).\n Finally, the user is prompted to indicate the two new starting points of DnaN activity in the daughter cells.\n ');
+fprintf('Loading A060: Replication Cluster.\n This module identifies the loading and unloading events of DnaN in time and space via a series of user inputs.\n A060 prompts the user to click on a set of points on the Kymograph.\n First, the user clicks on the localization point of a DnaN spot, which first becomes visible.\n Thereafter, the user clicks to identify the delocalization point of DnaN in hte same cell, where the fluorescence spot disappears (indicative of replication termination).\n Finally, the user is prompted to indicate the two new starting points of DnaN activity in the daughter cells.\n Click thrice to the right if you cannot see anything for this particular bacteria. \nClick thrice to the left to discard all bacteria for this part of the trace.\n');
 
 if exist('WorkspaceOutName','var')
     A060_RepliCluster00_Click(user,exp,WorkspaceOutName)
@@ -80,7 +80,7 @@ fprintf('Save Bacpics to workspace .\n');
 [Bacpics, MDchans, FLchans, Cells] = Get_Bacpics(user,exp);
 fprintf('End of section.\n');
 %% Section in Matlab. The goal of this particular section is printed on the next li\n\nne.
-fprintf('\n Bacpics saved to Workspace');
+fprintf('\n Bacpics saved to Workspace\n');
 
 fprintf('End of section.\n\n\n');
 %% Section in Matlab. The goal of this particular section is printed on the next line.
@@ -109,3 +109,6 @@ if exist('IPTPvalue','var')
 else
     GaussFitSimedit(user,exp)
 end
+
+fprintf('End of section.\n\n\n');
+fprintf('\n The Spine has completed. It is alive!\n');
