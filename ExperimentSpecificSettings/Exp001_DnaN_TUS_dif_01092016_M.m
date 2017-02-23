@@ -53,7 +53,7 @@ switch user
         initval.FLpath='Fluorescence\'; 
         initval.OSslash='\';
         initval.maxfile=150; %Normally, it is 421. However, I am testing with 5.
-        initval.startzoom=15; %Starting zoom for RepliCluster. Needs to be lower than the image number. If less than two, A060 likely throws an error.
+        initval.startzoom=3; %Starting zoom for RepliCluster. Needs to be lower than the image number. If less than two, A060 likely throws an error.
 end
 %initval.maxfile=421;
 initval.FLdatapath=strcat(initval.FLpath,initval.viewchan,initval.OSslash);
@@ -77,7 +77,7 @@ initval.beampaths = {'CFP',strcat(initval.kymopath,'BeamShape457.tif');...
 
 %used for kymograph processing-------------------------
 initval.channeldistance=32.0; %in pixels
-initval.channelno=2; %number of channels
+initval.channelno=1; %number of channels
 initval.perpadjust=0; %degrees
 initval.kymoangle=47;  %CCW
 initval.kymolength=150;  %in pixels

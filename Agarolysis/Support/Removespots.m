@@ -10,45 +10,50 @@ function bx = Removespots(x,thisBacmask)
         for frami = 1:frames;
             if outbound == 0;
                 bacsize = size(thisBacmask{frami});
-                                 
-                xval = round(x{spoti}(frami,2));
-                yval = round(x{spoti}(frami,4));
+                 
+                xSpotISize = size(x{spoti})
+                %skip if wrong size
+                if xSpotISize(2) >= 4
 
-                xlval = xval - 1;
-                xhval = xval + 1;
-                ylval = yval - 1;
-                yhval = yval + 1;
+                    xval = round(x{spoti}(frami,2));
+                    yval = round(x{spoti}(frami,4));
 
-                lbound = xlval < 0;
-                rbound = xhval > bacsize(2);
-                ubound = ylval < 0;
-                dbound = yhval > bacsize(1);
+                    xlval = xval - 1;
+                    xhval = xval + 1;
+                    ylval = yval - 1;
+                    yhval = yval + 1;
 
-                if ubound && lbound
-                    box = buildbox(xval,yval,bacsize(2),1);
-                elseif ubound && ~(lbound||rbound)
-                    box = buildbox(xval,yval,bacsize(2),2);
-                elseif ubound && rbound
-                    box = buildbox(xval,yval,bacsize(2),3);
-                elseif lbound && ~(ubound||dbound)
-                    box = buildbox(xval,yval,bacsize(2),4);
-                elseif ~(lbound||rbound||ubound||dbound)
-                    box = buildbox(xval,yval,bacsize(2),5);
-                elseif rbound && ~(ubound||dbound)
-                    box = buildbox(xval,yval,bacsize(2),6);
-                elseif dbound && lbound
-                    box = buildbox(xval,yval,bacsize(2),7);
-                elseif dbound && ~(lbound||rbound)
-                    box = buildbox(xval,yval,bacsize(2),8);
-                elseif dbound && rbound
-                    box = buildbox(xval,yval,bacsize(2),9);
-                end
+                    lbound = xlval < 0;
+                    rbound = xhval > bacsize(2);
+                    ubound = ylval < 0;
+                    dbound = yhval > bacsize(1);
 
-                Bacmaskl = thisBacmask{frami}';
-                hit = sum(Bacmaskl(box));
+                    if ubound && lbound
+                        box = buildbox(xval,yval,bacsize(2),1);
+                    elseif ubound && ~(lbound||rbound)
+                        box = buildbox(xval,yval,bacsize(2),2);
+                    elseif ubound && rbound
+                        box = buildbox(xval,yval,bacsize(2),3);
+                    elseif lbound && ~(ubound||dbound)
+                        box = buildbox(xval,yval,bacsize(2),4);
+                    elseif ~(lbound||rbound||ubound||dbound)
+                        box = buildbox(xval,yval,bacsize(2),5);
+                    elseif rbound && ~(ubound||dbound)
+                        box = buildbox(xval,yval,bacsize(2),6);
+                    elseif dbound && lbound
+                        box = buildbox(xval,yval,bacsize(2),7);
+                    elseif dbound && ~(lbound||rbound)
+                        box = buildbox(xval,yval,bacsize(2),8);
+                    elseif dbound && rbound
+                        box = buildbox(xval,yval,bacsize(2),9);
+                    end
 
-                if hit == 0
-                    outbound = 1;
+                    Bacmaskl = thisBacmask{frami}';
+                    hit = sum(Bacmaskl(box));
+
+                    if hit == 0
+                        outbound = 1;
+                    end
                 end
             end
         end

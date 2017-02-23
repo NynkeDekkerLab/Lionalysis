@@ -54,7 +54,7 @@ close all
 
 fprintf('End of section.\n\n\n');
 %% Section in Matlab. The goal of this particular section is printed on the next line.
-fprintf('Loading A060: Replication Cluster.\n This module identifies the loading and unloading events of DnaN in time and space via a series of user inputs.\n A060 prompts the user ot click on a set of points on the Kymograph.\n First, the user clicks on the localization point of a DnaN spot, which first becomes visible.\n Thereafte, the user clciks to identify the delocalization point of DnaN in hte same cell, where the fluorescence spot disappears (indicative of replication termination).\n Finally, the user is prompted to indicate the two new starting points of DnaN activity in the daughter cells.\n ');
+fprintf('Loading A060: Replication Cluster.\n This module identifies the loading and unloading events of DnaN in time and space via a series of user inputs.\n A060 prompts the user to click on a set of points on the Kymograph.\n First, the user clicks on the localization point of a DnaN spot, which first becomes visible.\n Thereafter, the user clicks to identify the delocalization point of DnaN in hte same cell, where the fluorescence spot disappears (indicative of replication termination).\n Finally, the user is prompted to indicate the two new starting points of DnaN activity in the daughter cells.\n ');
 
 if exist('WorkspaceOutName','var')
     A060_RepliCluster00_Click(user,exp,WorkspaceOutName)

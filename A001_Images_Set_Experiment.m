@@ -41,7 +41,7 @@ switch user
           toolspath='SupportingFunctions\';
       case 'Josko'
         fprintf('Selected user Josko. Setting github repository location. \n');
-        projectpath = 'H:\My Documents\GitHub\';
+        projectpath = 'C:\GitHub\';
         versionpath = 'KymoCode\';
         toolspath = 'SupportingFunctions\';
 
