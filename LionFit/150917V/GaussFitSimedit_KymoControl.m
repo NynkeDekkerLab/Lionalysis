@@ -40,7 +40,7 @@ for cellnumber=1:3;
 
     ClipFactor=1;
     GaussFactor=1;
-
+    Bacpics{celli}
     bacsize = size(Bacpics{celli,1});
     data = uint16(zeros(bacsize(1),bacsize(2),1));
     data(:,:,1) = Bacpics{celli,1};

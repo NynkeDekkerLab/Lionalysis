@@ -13,7 +13,7 @@ function bx = Removespots(x,thisBacmask)
                  
                 xSpotISize = size(x{spoti})
                 %skip if wrong size
-                if xSpotISize(2) >= 4
+                if xSpotISize(2) >= 4 && xSpotISize(1) > frami
 
                     xval = round(x{spoti}(frami,2));
                     yval = round(x{spoti}(frami,4));
