@@ -20,8 +20,6 @@ elseif(isstruct(runinputfile))
 else
     error('Could not find runinputfile or interpret runinputfile argument.')
 end
-filename=opt.outputfile;
-load(filename);
 
 Traj=importdata(opt.inputfile);
 dt=opt.timestep;
@@ -60,7 +58,7 @@ for i=1:size(TrajC,2);
 end
 MSD=nonzeros(MSD);
 D=nonzeros(D);
-D=D(D>0.015);
+% D=D(D>0.015);
 
 %% plot
 Nbins=100;
@@ -74,7 +72,19 @@ axis([-0.005 1.5 0 0.12])
 xlabel('Diffusion Coefficient (um2/s)')
 ylabel('Probability (-)')
 title(strcat({Title},'',{ 'Ntraj ='}, num2str(size(D,1))));
-saveas(gcf,'Figures/Dplot.fig')
+
+%% Saving important vars + plots
+if exist(sprintf('%s%s',opt.dataDirectory,'Results/Figures/Dplot_chopped.fig'))==2
+    delete(sprintf('%s%s',opt.dataDirectory,'Results/Figures/Dplot_chopped.fig'))
+    mkdir(sprintf('%s%s',opt.dataDirectory,'Results/Figures'))
+    saveas(gcf,sprintf('%s%s',opt.dataDirectory,'Results/Figures/Dplot_chopped.fig'));
+elseif exist(sprintf('%s%s',opt.dataDirectory,'Results/Figures/Dplot_chopped.fig'))==0
+    mkdir(sprintf('%s%s',opt.dataDirectory,'Results/Figures'));
+    saveas(gcf,sprintf('%s%s',opt.dataDirectory,'Results/Figures/Dplot_chopped.fig'));
+end
+saveas(gcf,sprintf('%s%s',opt.dataDirectory,'Results/Figures/Dplot_chopped.fig'));
+save(sprintf('%s%s',opt.dataDirectory,'Results/D.mat'),'D')
+save(sprintf('%s%s',opt.dataDirectory,'Results/TrajChopped.mat'),'TrajC')
 
 end
 

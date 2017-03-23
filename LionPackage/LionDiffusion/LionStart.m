@@ -7,8 +7,8 @@ function [Traj] = LionStart(N)
     % experiment numbers
 
     %Lower upperbound for trajectories
-    LB=3;
-    UB=200;
+    LB=4;
+    UB=50;
 
 
     %Traj: all trajectories from experiments N, from utrack to VB3 format

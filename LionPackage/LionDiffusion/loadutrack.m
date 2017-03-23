@@ -14,7 +14,7 @@ function [A] = loadutrack(N, dataDirectory)
         %Nstr=num2str(N(i));
         %tracksFinal{i}=load(strcat(mainstring,Nstr,followup));
         fprintf('File number %d \n ', N(i));
-        fileName = sprintf('%s\\%d\\utrackResults\TrackingPackage\tracks\Channel_1_tracking_result.mat', dataDirectory, N(i))
+        fileName = sprintf('%s%d/utrackResults/TrackingPackage/tracks/Channel_1_tracking_result.mat', dataDirectory, N(i))
         tracksFinal{i} = load( fileName );
     end
 
