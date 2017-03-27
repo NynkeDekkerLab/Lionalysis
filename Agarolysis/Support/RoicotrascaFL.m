@@ -73,7 +73,7 @@ for k = 1:num_images;
     %% Transformation
     
     RITimg = RIimg;
-    if ~isequal(Rval,1)
+    if ~isequal(Rval,0)
         RITimg = imresize(RITimg,[RXval,RYval],'bilinear');
     end
     

@@ -8,7 +8,7 @@ jarpath = 'C:\GitHub\KymoCode\SupportingFunctions\';
 javaaddpath(strcat(jarpath,'mij.jar'))
 javaaddpath(strcat(jarpath,'ij.jar'))
 addpath('C:\Program Files\DIPimage 2.8');
-dipstart; 
+dip_initialise; 
 % continue
 if any(strcmp(init.difchan,init.channels(init.viewchannels)))
     chans = [init.viewchannels(strcmp(init.difchan,init.channels(init.viewchannels))),...
