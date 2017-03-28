@@ -58,7 +58,7 @@ for i=1:size(TrajC,2);
 end
 MSD=nonzeros(MSD);
 D=nonzeros(D);
-% D=D(D>0.015);
+D=D(D>0.015);
 
 %% plot
 Nbins=100;
