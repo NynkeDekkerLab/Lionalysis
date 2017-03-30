@@ -18,14 +18,14 @@ opt=VB3_getOptions('General_set');
 %Folder with data
 display(sprintf('%s%s','JobID: ',opt.jobID))
 if x==1;
-D=load(sprintf('%s%s',opt.dataDirectory,'Results/D.mat'));
-Traj=load(sprintf('%s%s',opt.dataDirectory,'Results/TrajChopped.mat'));
-Traj=Traj.TrajC;
-D=D.D;
+    D=load(sprintf('%s%s',opt.dataDirectory,'Results/D.mat'));
+    Traj=load(sprintf('%s%s',opt.dataDirectory,'Results/TrajChopped.mat'));
+    Traj=Traj.TrajC;
+    D=D.D;
 else
-TrajOri=load(sprintf('%s%s',opt.dataDirectory,'Results/Traj.mat'));
-Traj=TrajOri.Traj;
-D=Dcalc(Traj,opt.timestep);
+    TrajOri=load(sprintf('%s%s',opt.dataDirectory,'Results/Traj.mat'));
+    Traj=TrajOri.Traj;
+    D=Dcalc(Traj,opt.timestep);
 end
 
 %How does D look?
