@@ -1,7 +1,8 @@
-function [D,TrajC] = Dchoplot(runinputfile,Title)
+function [D,TrajC] = Dchoplot()
 %DCHOPLOT Summary of this function goes here
 %   Detailed explanation goes here
 
+runinputfile='General_set';
 if nargin<2
     Title='';
 end
@@ -58,7 +59,7 @@ for i=1:size(TrajC,2);
 end
 MSD=nonzeros(MSD);
 D=nonzeros(D);
-D=D(D>0.015);
+D=D(D>0.01);
 
 %% plot
 Nbins=100;

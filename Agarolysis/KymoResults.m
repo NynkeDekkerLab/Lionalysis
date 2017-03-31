@@ -314,8 +314,8 @@ axis([0 1 -0.1 40])
 
 %% Numspots vs. position & cell length
 
-bins = 15;
-thisedge2{1} = linspace(min(Lcfp),max(Lcfp),bins+1);
+bins = 20;
+thisedge2{1} = linspace(0,1,bins+1);
 thisedge2{2} = (0:bins)/bins;
 
 fig4 = figure(4);
@@ -332,8 +332,13 @@ Numcfp(2,:) = Pcfp;
 figure(4)
 subplot(1,3,1)
 Heatmap = hist3(Numcfp','Edges',thisedge2);
-pcolor(thisedge2{1},(thisedge2{2}),Heatmap');
-colormap(fig4,jet) % heat map
+Heatmap=Heatmap';
+DummyHeat=max(Heatmap);
+for i=1:size(Heatmap,2)
+    Heatmap(:,i)=(Heatmap(:,i)./DummyHeat(i));
+end
+pcolor(thisedge2{1},(thisedge2{2}),Heatmap);
+% colormap(fig4,jet) % heat map
 xlabel('Cell Length'); ylabel('Position in Cell');
 title('Kymo data: CFP');
 grid on
@@ -342,6 +347,11 @@ figure(5)
 subplot(1,3,1)
 hold on
 hist3(Numcfp','Edges',thisedge2)
+Heatmap=Heatmap';
+DummyHeat=max(Heatmap);
+for i=1:size(Heatmap,2)
+    Heatmap(:,i)=(Heatmap(:,i)./DummyHeat(i));
+end
 colormap(fig5,jet) % heat map
 set(get(gca,'child'),'FaceColor','interp','CDataMode','auto');
 xlabel('Cell Length'); ylabel('Position in Cell');zlabel('Amount of spots')
@@ -368,7 +378,12 @@ FilteredSignalYFP=size(NumYFPnz,2)/size(IYFP,2); % Percentage of total signal
 figure(4)
 subplot(1,3,2)
 Heatmap = hist3(NumYFPnz','Edges',thisedge2);
-pcolor(thisedge2{1},(thisedge2{2}),Heatmap');
+Heatmap=Heatmap';
+DummyHeat=max(Heatmap);
+for i=1:size(Heatmap,2)
+    Heatmap(:,i)=(Heatmap(:,i)./DummyHeat(i));
+end
+pcolor(thisedge2{1},(thisedge2{2}),Heatmap);
 xlabel('Cell Length'); ylabel('Position in Cell');
 title('Kymo data: YFP');
 grid on
@@ -392,7 +407,12 @@ Numrfp(2,:) = Prfp;
 figure(4)
 subplot(1,3,3)
 Heatmap = hist3(Numrfp','Edges',thisedge2);
-h = pcolor(thisedge2{1},(thisedge2{2}),Heatmap');
+Heatmap=Heatmap';
+DummyHeat=max(Heatmap);
+for i=1:size(Heatmap,2)
+    Heatmap(:,i)=(Heatmap(:,i)./DummyHeat(i));
+end
+h = pcolor(thisedge2{1},(thisedge2{2}),Heatmap);
 xlabel('Cell Length'); ylabel('Position in Cell');
 title('Kymo data: RFP');
 grid on

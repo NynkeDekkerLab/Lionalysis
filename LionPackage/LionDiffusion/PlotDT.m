@@ -58,13 +58,13 @@ hold on
 m=plot(X,F(X,C(1),C(2)),'-r','LineWidth',3);
  pp=plot(X,F(X,C(1),-1/Tbl),'--b','LineWidth',3);
 % set(l(1),'LineWidth',3);
-axis([0 100 0 150]);
+axis([5 100 0 700]);
 hold off
 
 % H = fitdist(DwellTime','exponential');
 % histfit(DwellTime,Nbins,'exponential')
 % set(gca,'FontSize',18)
-title(strcat({'Tus Dwell Time OriC strain - t_{unload} = '},num2str(UnloadingTime),{' N_{tracks} : '},num2str(size(Traj,2))));
+title(strcat({'Tus Dwell Time OriZ strain - t_{unload} = '},num2str(UnloadingTime),{' N_{tracks} : '},num2str(size(Traj,2))));
 xlabel('Dwell Time (s)')
 ylabel('Frequency (-)')
 % axis([0 30 0 ])

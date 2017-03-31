@@ -4,9 +4,9 @@ close all
 
 %% Load Results
 
-TraceNumbers=[1];
+TraceNumbers=[9,11];
 
-init.OSslash = '\';
+init.OSslash = '/';
 
 fprintf('Select Final Results Folder');
 init.resultspath = uigetdir(pwd,'Select Results Folder');

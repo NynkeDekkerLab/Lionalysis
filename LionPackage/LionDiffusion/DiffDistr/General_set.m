@@ -8,7 +8,7 @@
 % To run the HMM analysis manually type:
 % >> VB3_HMManalysis('runinputfilename')
 
-jobID = 'Tus-PAmCherry'; % CHANGE THIS EACH EXP
+jobID = 'Tus-PAmCherry OriC '; % CHANGE THIS EACH EXP
 
 %select the main directory of the experiment containing the '1' '2'
 %experiment that contain the "stacks" and "utrackResults" folders

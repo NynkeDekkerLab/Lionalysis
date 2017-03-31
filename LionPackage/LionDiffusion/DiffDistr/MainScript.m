@@ -72,7 +72,7 @@ h=bar(bins,Dc*100/(sum(Dc)));
 h.EdgeColor='k';
 h.FaceColor=[.5 .5 .5];
 set(gca,'fontsize',18)
-axis([-0.01 1.5 0 20])
+axis([-0.01 1.5 0 7])
 xlabel('Diffusion Coefficient (um^{2}/s)')
 ylabel('Probability (-)')
 
