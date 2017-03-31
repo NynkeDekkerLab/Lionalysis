@@ -59,7 +59,11 @@ for i=1:size(TrajC,2);
 end
 MSD=nonzeros(MSD);
 D=nonzeros(D);
+<<<<<<< HEAD
 D=D(D>0.01);
+=======
+% D=D(D>0.015);
+>>>>>>> origin/Roy-implementations
 
 %% plot
 Nbins=100;

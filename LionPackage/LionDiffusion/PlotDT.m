@@ -1,5 +1,5 @@
 function [f2,DwellTime] = PlotDT(Traj)
-%PLOTDT Summary of this function goes here
+%PLOTDT Dwell time analysis
 %   Detailed explanation goes here
 
 OSslash='/';
@@ -54,13 +54,13 @@ UnloadingTime=1/(1/TotalDecayTime-1/Tbl)
 figure(1)
 hist(DwellTime,Nbins)
 hold on
- k=plot(X,F(X,C(1),-1/UnloadingTime),'--g','LineWidth',3);
+k=plot(X,F(X,C(1),-1/UnloadingTime),'--g','LineWidth',3);
 m=plot(X,F(X,C(1),C(2)),'-r','LineWidth',3);
- pp=plot(X,F(X,C(1),-1/Tbl),'--b','LineWidth',3);
+pp=plot(X,F(X,C(1),-1/Tbl),'--b','LineWidth',3);
 % set(l(1),'LineWidth',3);
 axis([5 100 0 700]);
 hold off
-
+legend('data', 'unloading curve', 'total decay', 'bleaching');
 % H = fitdist(DwellTime','exponential');
 % histfit(DwellTime,Nbins,'exponential')
 % set(gca,'FontSize',18)
