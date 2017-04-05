@@ -100,6 +100,11 @@ end
 fprintf('Data has been loaded and re-formatted. Next, figures.\n'); 
  
 
+%scatter [cell length, distance between brightest points for |YFP-CFP| (Tus-Dif), |YFP-RFP| (TUS-DNAN) and |YFP-RAND| (TUS random)]
+
+
+abort('Hey %s', 'test');
+
 %Simple figure showing scattered spot positions versus cell length. Note that cell length is
 %   related to but not equal to the replication cycle, causing a large error both vertically
 %   and horizontally.
