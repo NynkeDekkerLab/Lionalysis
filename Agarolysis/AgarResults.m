@@ -142,74 +142,28 @@ spotPositionIntensity(Pyfp, Iyfp, 'y', 'YFP');
 subplot(1,3,3) 
 spotPositionIntensity(Prfp, Irfp, 'r', 'RFP');
  
+ 
+% This shows the spots again, but with histograms showing the distribution of spots.
+%       bin size is calculated by Sturges' formula
+fig3 = figure(3);
+set(fig3,'Position',[100,0,1820,1080]) 
 
-abort('Figure %d', 2);
-%% Numspots vs. position
+subplot(1,3,1);
+spotPositionCount(Pcfp, Icfp, 'b', 'CFP');
+set(gca,'Color',[0. 0. 0.]);
+subplot(1,3,2);
+spotPositionCount(Pyfp, Iyfp, 'y', 'YFP');
+set(gca,'Color',[0. 0. 0.]);
+subplot(1,3,3);
+spotPositionCount(Prfp, Irfp, 'r', 'RFP'); 
+set(gca,'Color',[0. 0. 0.]);
 
-bins = 15;
-thisedge = (0:bins)/bins;
-
-pause;fig3 = figure(3);
-set(fig3,'Position',[20,300,1800,500])
-
-% CFP
-
-subplot(1,3,1)
-[numbin,edges] = histcounts(Pcfp,thisedge);
-norm = max(numbin)/80;
-X = diff(edges);
-X = cumsum(X) - X(1)/2;
-hold on
-scatter(Pcfp,Icfp,'b','x');
-plot(X,numbin/norm,'k','LineWidth',3)
-hold off
-xlabel('Position in cell'); ylabel('Amount of spots (normalized)');
-title('Agar data: CFP')
-axis([0 1 -0.1 90])
-set(gca,'FontSize',16)
-
-% YFP
-
-subplot(1,3,2)
-[numbin,edges] = histcounts(Pyfp,thisedge);
-norm = max(numbin)/80;
-X = diff(edges);
-X = cumsum(X) - X(1)/2;
-hold on
-scatter(Pyfp,Iyfp,'m','x');
-plot(X,numbin/norm,'k','LineWidth',3)
-hold off
-xlabel('Position in cell'); ylabel('Amount of spots (normalized)');
-title('Agar data: YFP')
-axis([0 1 -0.1 90])
-set(gca,'FontSize',16)
-
-% RFP
-
-subplot(1,3,3)
-[numbin,edges] = histcounts(Prfp,thisedge);
-norm = max(numbin)/80;
-X = diff(edges);
-X = cumsum(X) - X(1)/2;
-hold on
-scatter(Prfp,Irfp,'r','x');
-plot(X,numbin/norm,'k','LineWidth',3)
-hold off
-xlabel('Position in cell'); ylabel('Amount of spots (normalized)');
-title('Agar data: RFP')
-axis([0 1 -0.1 90])
-set(gca,'FontSize',16)
-
-
-%% Numspots vs. position & cell length
-
+abort('Figure %d', 3);
 bins = 20;
 thisedge2{1} = linspace(15,35,bins+1)*0.159;
 thisedge2{2} = (0:bins)/bins;
-
-pause;fig4 = figure(4);
-set(fig4,'Position',[20,300,1800,500])
-pause;fig5 = figure(5);
+ 
+set(fig4,'Position',[20,300,1800,500]) 
 set(fig5,'Position',[20,300,1800,500])
 
 % CFP
