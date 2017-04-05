@@ -102,69 +102,23 @@ for i=1:Nexp
     end
 end
 
-% tozero = Iyfp<yfp.filterval;
-% Iyfp(tozero) = 0;
-% Lyfp(tozero) = 0;
-% Pyfp(tozero) = 0;
-% Fyfp(tozero) = 0;
+fprintf('Data has been loaded and re-formatted. Next, figures.\n'); 
+ 
 
-
-%% Position vs. cell length
-% CFP
-
-fig1 = figure(1);
-set(fig1,'Position',[20,300,1800,500])
-
-
-subplot(1,3,1)
-hold on
-scatter(single(Lcfp),Pcfp,Icfp,'b','filled');
-myfit=polyfit(Lcfp,Pcfp,4);
-x=15:0.1:45;
-y=polyval(myfit,x);
-% plot(x,y,'r','LineWidth',5)
-xlabel('Cell Length'); ylabel('Normalized osition of spot in cell'); 
-title('Agar data: CFP')
-hold off
-axis([12 43 -0.1 1.1])
-set(gca,'FontSize',16)
-
-
-% YFP
-
+%Simple figure showing scattered spot positions versus cell length. Note that cell length is
+%related to butr not equal to the replication cycle, causing a large error both vertically
+%and horizontally.
+ 
+fig1 = figure(1);  
+subplot(1,3,1);
+spotPositionCellLength(Lcfp, Pcfp, Icfp, 'CFP', 'b');
 subplot(1,3,2);
-hold on
-scatter(single(Lyfp),Pyfp,Iyfp,'m','filled');
-myfit=polyfit(Lyfp,Pyfp,4);
-x=15:0.1:45;
-y=polyval(myfit,x);
-% plot(x,y,'k','LineWidth',5)
-xlabel('Cell Length'); ylabel('Normalized osition of spot in cell'); 
-title('Agar data: YFP')
-hold off
-axis([12 43 -0.1 1.1])
-set(gca,'FontSize',16)
+spotPositionCellLength(Lyfp, Pyfp, Iyfp, 'YFP', 'y');
+subplot(1,3,3);
+spotPositionCellLength(Lrfp, Prfp, Irfp, 'RFP', 'r');
 
-% RFP
-
-subplot(1,3,3)
-hold on
-scatter(single(Lrfp),Prfp,Irfp,'r','filled');
-myfit=polyfit(Lrfp,Prfp,4);
-x=15:0.1:45;
-y=polyval(myfit,x);
-xlabel('Cell Length'); ylabel('Normalized osition of spot in cell'); 
-title('Agar data: RFP')
-% plot(x,y,'k','LineWidth',5)
-hold off
-axis([12 43 -0.1 1.1])
-set(gca,'FontSize',16)
-
-%% Intensity vs. position
-
-% CFP
-
-fig2 = figure(2);
+abort('Looking at figure %d. \n', 1);
+pause;fig2 = figure(2);
 set(fig2,'Position',[20,300,1800,500])
 subplot(1,3,1)
 
@@ -218,7 +172,7 @@ set(gca,'FontSize',16)
 bins = 15;
 thisedge = (0:bins)/bins;
 
-fig3 = figure(3);
+pause;fig3 = figure(3);
 set(fig3,'Position',[20,300,1800,500])
 
 % CFP
@@ -276,9 +230,9 @@ bins = 20;
 thisedge2{1} = linspace(15,35,bins+1)*0.159;
 thisedge2{2} = (0:bins)/bins;
 
-fig4 = figure(4);
+pause;fig4 = figure(4);
 set(fig4,'Position',[20,300,1800,500])
-fig5 = figure(5);
+pause;fig5 = figure(5);
 set(fig5,'Position',[20,300,1800,500])
 
 % CFP
@@ -297,7 +251,7 @@ NumCFPnz(2,:)=nonzeros(NumCFP(2,:));
 
 FilteredSignalCFP=size(NumCFPnz,2)/size(ICFP,2); % Percentage of total signal
 
-figure(4)
+pause;figure(4)
 subplot(1,3,1)
 Heatmap = hist3(NumCFPnz','Edges',thisedge2);
 Heatmap=Heatmap';
@@ -312,7 +266,7 @@ title('Agar data: CFP');
 grid on
 set(gca,'FontSize',16)
 
-figure(5)
+pause;figure(5)
 subplot(1,3,1)
 hold on
 hist3(NumCFPnz','Edges',thisedge2)
@@ -340,7 +294,7 @@ NumYFPnz(2,:)=nonzeros(NumYFP(2,:));
 
 FilteredSignalYFP=size(NumYFPnz,2)/size(IYFP,2); % Percentage of total signal
 
-figure(4)
+pause;figure(4)
 subplot(1,3,2)
 Heatmap = hist3(NumYFPnz','Edges',thisedge2);
 Heatmap=Heatmap';
@@ -354,7 +308,7 @@ title('Agar data: YFP');
 grid on
 set(gca,'FontSize',16)
 
-figure(5)
+pause;figure(5)
 subplot(1,3,2)
 hold on
 hist3(NumYFPnz','Edges',thisedge2)
@@ -382,7 +336,7 @@ NumRFPnz(2,:)=nonzeros(NumRFP(2,:));
 
 FilteredSignalRFP=size(NumRFPnz,2)/size(IRFP,2);
 
-figure(4)
+pause;figure(4)
 subplot(1,3,3)
 Heatmap = hist3(NumRFPnz','Edges',thisedge2);
 Heatmap=Heatmap';
@@ -396,7 +350,7 @@ title('Agar data: RFP');
 grid on
 set(gca,'FontSize',16)
 
-figure(5)
+pause;figure(5)
 subplot(1,3,3)
 hold on
 hist3(NumRFPnz','Edges',thisedge2)
@@ -413,7 +367,7 @@ set(gca,'FontSize',16)
 %% Full cell intensity vs. celllength
 
 clear plotcfp plotyfp plotrfp
-fig6 = figure(6);
+pause;fig6 = figure(6);
 set(fig6,'Position',[20,300,1800,500])
 
 % CFP
@@ -535,7 +489,7 @@ axis([12 43 -0.1 4*10^5])
 set(gca,'FontSize',16)
 
 %% Numspots/cell vs. cell length
-fig1 = figure(7);
+pause;fig1 = figure(7);
 
 Datapoints = 6; %number of points for the average
 
@@ -568,3 +522,6 @@ title('Numspots/cell vs. cell length for YFP')
 hold off
 set(gca,'FontSize',16)
 legend('Spot vs Length points','Mean value','std')
+
+pause;
+close all;
