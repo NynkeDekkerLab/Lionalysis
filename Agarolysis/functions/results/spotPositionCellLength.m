@@ -1,4 +1,4 @@
-function [] = spotPositionCellLength(Lcfp, Pcfp, Icfp, channel, colour) 
+function [] = spotPositionCellLength(Lcfp, Pcfp, Icfp, channel, colour, opacity) 
 	if 0
 		hold on
 		scatter(single(Lcfp),Pcfp,Icfp,colour,'filled');
@@ -9,7 +9,9 @@ function [] = spotPositionCellLength(Lcfp, Pcfp, Icfp, channel, colour)
 		legend('spot scatter', 'polynomial fit P_4')
 		hold off
 	else
-		scatter(single(Lcfp),Pcfp,Icfp,colour,'filled');
+		scatter(single(Lcfp),Pcfp,Icfp/mean(Icfp)*40.0, colour,'filled', ...
+			'MarkerFaceAlpha', opacity, ...
+			'MarkerEdgeAlpha', opacity);
 	end
 
 	xlabel('Cell Length');

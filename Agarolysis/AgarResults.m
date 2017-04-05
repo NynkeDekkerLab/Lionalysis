@@ -106,67 +106,44 @@ fprintf('Data has been loaded and re-formatted. Next, figures.\n');
  
 
 %Simple figure showing scattered spot positions versus cell length. Note that cell length is
-%related to butr not equal to the replication cycle, causing a large error both vertically
-%and horizontally.
+%   related to but not equal to the replication cycle, causing a large error both vertically
+%   and horizontally.
+
+%   The markers are at constant opacity, to give an idea of density, and of a marker size that is
+%   proportional to their relative intensity. 
+
+opacity = 0.6;
  
 fig1 = figure(1);  
+set(fig1,'Position',[100,0,1820,1080])
 subplot(1,3,1);
-spotPositionCellLength(Lcfp, Pcfp, Icfp, 'CFP', 'b');
+spotPositionCellLength(Lcfp, Pcfp, Icfp, 'CFP', 'b', opacity);
+set(gca,'Color',[0. 0. 0.]);
+
 subplot(1,3,2);
-spotPositionCellLength(Lyfp, Pyfp, Iyfp, 'YFP', 'y');
+spotPositionCellLength(Lyfp, Pyfp, Iyfp, 'YFP', 'y', opacity);
+set(gca,'Color',[0. 0. 0.]);
+
 subplot(1,3,3);
-spotPositionCellLength(Lrfp, Prfp, Irfp, 'RFP', 'r');
+spotPositionCellLength(Lrfp, Prfp, Irfp, 'RFP', 'r', opacity);
+set(gca,'Color',[0. 0. 0.]);
 
-abort('Looking at figure %d. \n', 1);
-pause;fig2 = figure(2);
-set(fig2,'Position',[20,300,1800,500])
-subplot(1,3,1)
-
-hold on
-scatter(Pcfp,Icfp,'b','x');
-myfit=polyfit(Pcfp,Icfp,4);
-x=0:0.001:1;
-y=polyval(myfit,x);
-plot(x,y,'k','LineWidth',3)
-xlabel('Position in cell'); ylabel('Spot Intensity'); 
-title('Agar data: CFP')
-hold off
-axis([0 1 -0.1 90])
-set(gca,'FontSize',16)
+%   This figure shows the spot position versus intensity. THe goal of this is to see if teh
+%cell length is correlated to the spot intensity, but the results so far clearly show that this 
+%is mostly random. A polynomial fit doesn't tell us much; you need a model before doing so.
 
 
-% YFP
+fig2 = figure(2);
+set(fig2,'Position',[100,0,1820,1080])
+subplot(1,3,1) 
+spotPositionIntensity(Pcfp, Icfp, 'b', 'CFP');
+subplot(1,3,2) 
+spotPositionIntensity(Pyfp, Iyfp, 'y', 'YFP');
+subplot(1,3,3) 
+spotPositionIntensity(Prfp, Irfp, 'r', 'RFP');
+ 
 
-subplot(1,3,2)
-hold on
-scatter(Pyfp,Iyfp,'m','x');
-myfit=polyfit(Pyfp,Iyfp,4);
-x=0:00.1:1;
-y=polyval(myfit,x);
-plot(x,y,'k','LineWidth',3)
-xlabel('Position in cell'); ylabel('Spot Intensity'); 
-title('Agar data: YFP')
-hold off
-axis([0 1 -0.1 90])
-set(gca,'FontSize',16)
-
-
-% RFP
-
-subplot(1,3,3)
-hold on
-scatter(Prfp,Irfp,'r','x');
-myfit=polyfit(Prfp,Irfp,4);
-x=0:00.1:1;
-y=polyval(myfit,x);
-plot(x,y,'k','LineWidth',3)
-xlabel('Position in cell'); ylabel('Spot Intensity'); 
-title('Agar data: RFP')
-hold off
-axis([0 1 -0.1 90])
-set(gca,'FontSize',16)
-
-
+abort('Figure %d', 2);
 %% Numspots vs. position
 
 bins = 15;
