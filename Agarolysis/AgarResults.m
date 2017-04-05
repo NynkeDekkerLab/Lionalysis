@@ -2,7 +2,13 @@ clear all
 close
 clc
 
-folder='D:\RoyData\160205_Agar_Data';
+%Location of files
+[~, name] = system('hostname'); 
+
+folder='K:\windows\data\RoyData\160205_Agar_Data';
+if strcmp( name, 'Atlantis') %Josko home PC
+    folder = 'K:\windows\data\RoyData\160205_Agar_Data';
+end
 slash = '/';
 %read experiments sequentially
 exps=[1 2 3 4 5 7 8 9];
@@ -36,29 +42,27 @@ Nexp=size(E,2);
 
 %reformat data
 for i=1:Nexp
-    
-    Ncells{i}=size(E{i}.DataStruct,2);
-    
-    
+
+    Ncells{i}=size(E{i}.DataStruct,2); 
     for j=1:Ncells{i} 
-        
+
         if ~isempty(E{i}.DataStruct(1,j).Lnorm)        
             LNormCFP{i,j}=E{i}.DataStruct(1,j).Lnorm;
         else
             LNormCFP{i,j}=0;
         end
-        
+
         CellLength{i,j}=E{i}.DataStruct(1,j).CellLength;
-        
-        
+
+
         CFPld{i,j}=E{i}.DataStruct(1,j).ld;
         YFPld{i,j}=E{i}.DataStruct(2,j).ld;
         RFPld{i,j}=E{i}.DataStruct(3,j).ld;
-                
+
         NspotsCFP=size(CFPld{i,j},2);
         NspotsYFP=size(YFPld{i,j},2);
         NspotsRFP=size(RFPld{i,j},2);        
-     
+
         if NspotsCFP==0
             CFPld{i,j}{1}=[];
         else
@@ -71,7 +75,7 @@ for i=1:Nexp
         end
         ncfp = [ncfp NspotsCFP];
         celllength = [celllength CellLength{i,j}];
-        
+
         if NspotsYFP==0
             YFPld{i,j}{1}=[];
         else
@@ -83,7 +87,7 @@ for i=1:Nexp
             end
         end
         nyfp = [nyfp NspotsYFP];
-        
+
         if NspotsRFP==0
             RFPld{i,j}{1}=[];
         else
@@ -299,7 +303,7 @@ Heatmap = hist3(NumCFPnz','Edges',thisedge2);
 Heatmap=Heatmap';
 DummyHeat=max(Heatmap);
 for i=1:size(Heatmap,2)
-    Heatmap(:,i)=(Heatmap(:,i)./DummyHeat(i));
+Heatmap(:,i)=(Heatmap(:,i)./DummyHeat(i));
 end
 pcolor(thisedge2{1},(thisedge2{2}),Heatmap);
 % colormap(fig4,jet) % heat map
@@ -342,7 +346,7 @@ Heatmap = hist3(NumYFPnz','Edges',thisedge2);
 Heatmap=Heatmap';
 DummyHeat=max(Heatmap);
 for i=1:size(Heatmap,2)
-    Heatmap(:,i)=(Heatmap(:,i)./DummyHeat(i));
+Heatmap(:,i)=(Heatmap(:,i)./DummyHeat(i));
 end
 pcolor(thisedge2{1},(thisedge2{2}),Heatmap);
 xlabel('Cell Length'); ylabel('Position in Cell');
@@ -384,7 +388,7 @@ Heatmap = hist3(NumRFPnz','Edges',thisedge2);
 Heatmap=Heatmap';
 DummyHeat=max(Heatmap);
 for i=1:size(Heatmap,2)
-    Heatmap(:,i)=(Heatmap(:,i)./DummyHeat(i));
+Heatmap(:,i)=(Heatmap(:,i)./DummyHeat(i));
 end
 h = pcolor(thisedge2{1},(thisedge2{2}),Heatmap);
 xlabel('Cell Length'); ylabel('Position in Cell');
@@ -537,9 +541,9 @@ Datapoints = 6; %number of points for the average
 
 
 for i=1:max(nrfp)%i=1:Datapoints;
- p{i} = find(nrfp == i);
- m(i) = mean(celllength(p{i}));
- Spotstd(i)=std(celllength(p{i}));
+p{i} = find(nrfp == i);
+m(i) = mean(celllength(p{i}));
+Spotstd(i)=std(celllength(p{i}));
 %Interval=((max(celllength)-min(celllength))/Datapoints)+i*min(celllength);
 %p{i}=find(celllength >= 
 end

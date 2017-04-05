@@ -65,6 +65,7 @@ if exist('Users.dat','file')
     set(handles.box_ddataset,'visible','on')
     set(handles.box_viewchannels,'visible','on')
     set(handles.agarstart,'visible','on')
+    
     handles.OSslash = handles.userinfo{1,2};
     handles.kymopath = handles.userinfo{1,3};
     handles.agarpath = strcat(handles.kymopath,'Agarolysis',handles.OSslash);
