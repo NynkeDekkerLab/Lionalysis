@@ -1,7 +1,7 @@
 function [] = spotPositionCount(p, I, colour, channel)
 
 
-	numBins = log(length(p))/log(2)+1;
+	numBins = sturgesFormula(p);
 
 	edgeLocations = (0:numBins)/numBins;
 

@@ -1,15 +1,15 @@
-function [] = spotPositionCellLength(Lcfp, Pcfp, Icfp, channel, colour, opacity) 
+function [] = spotPositionCellLength(L, P, I, channel, colour, opacity) 
 	if 0
 		hold on
-		scatter(single(Lcfp),Pcfp,Icfp,colour,'filled');
-		myfit=polyfit(Lcfp,Pcfp,4);
+		scatter(single(L),P,I,colour,'filled');
+		myfit=polyfit(L,P,4);
 		x=15:0.1:45;
 		y=polyval(myfit,x);
 		plot(x,y,'r','LineWidth',5)
 		legend('spot scatter', 'polynomial fit P_4')
 		hold off
 	else
-		scatter(single(Lcfp),Pcfp,Icfp/mean(Icfp)*40.0, colour,'filled', ...
+		scatter(single(L),P,I/mean(I)*40.0, colour,'filled', ...
 			'MarkerFaceAlpha', opacity, ...
 			'MarkerEdgeAlpha', opacity);
 	end
@@ -17,6 +17,13 @@ function [] = spotPositionCellLength(Lcfp, Pcfp, Icfp, channel, colour, opacity)
 	xlabel('Cell Length');
 	ylabel('Normalized spot position in cell'); 
 	title(sprintf('Agar data: %s', channel))
-	axis([12 43 -0.1 1.1])
+
+	%left = mean(L) - std(L);
+	%right = mean(L) + std(L);
+
+	left = min(L);
+	right = max(L);
+
+	axis([left right -0.1 1.1])
 	set(gca,'FontSize',16)	
 end
