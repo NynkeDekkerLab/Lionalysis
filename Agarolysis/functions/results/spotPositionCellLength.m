@@ -22,8 +22,7 @@ function [] = spotPositionCellLength(L, P, I, channel, colour, opacity, horizont
 	%right = mean(L) + std(L);
 
 	left = horizontalLimit(1);
-	right = horizontalLimit(2);
-
+	right = horizontalLimit(2); 
 	axis([left right -0.1 1.1])
 	set(gca,'FontSize',16)	
 end
