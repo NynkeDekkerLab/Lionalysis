@@ -15,7 +15,7 @@ E %each cell is an experiment (corresponds to folder)
 
             pixels nobody knows Mark's invention
             bx  tracks what spots are rejected by the USER
-            Ld long-axis short axis  (Does not contain errors, but are the average of l(d) over d and d(l) over l. Can be found by looking at function projectToMesh)            
+            Ld x in long-axis short axis  (Does not contain errors, but are the average of l(d) over d and d(l) over l. Can be found by looking at function projectToMesh)            
             CellLength Long-axis in pixels
             Lnorm   is long-axis divided by long-axis maximum in experiment
             BacMesh Oufti Mesh

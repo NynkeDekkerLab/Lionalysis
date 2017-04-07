@@ -1,4 +1,4 @@
-function [] = spotPositionCellLength(L, P, I, channel, colour, opacity) 
+function [] = spotPositionCellLength(L, P, I, channel, colour, opacity, horizontalLimit) 
 	if 0
 		hold on
 		scatter(single(L),P,I,colour,'filled');
@@ -21,8 +21,8 @@ function [] = spotPositionCellLength(L, P, I, channel, colour, opacity)
 	%left = mean(L) - std(L);
 	%right = mean(L) + std(L);
 
-	left = min(L);
-	right = max(L);
+	left = horizontalLimit(1);
+	right = horizontalLimit(2);
 
 	axis([left right -0.1 1.1])
 	set(gca,'FontSize',16)	
