@@ -50,70 +50,7 @@ for i=1:Nexp
             LNormCFP{i,j}=E{i}.DataStruct(1,j).Lnorm;
         else
             LNormCFP{i,j}=0;
-        end 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        skipPair = 0;
-        if length(E{i}.DataStruct(1,j).ld) == 0
-            skipPair = 1;
-        end
-        if length(E{i}.DataStruct(2,j).ld) == 0
-            skipPair = 1;
-        end
-        if length(E{i}.DataStruct(3,j).ld) == 0 
-            skipPair = 1;
-        end
-        if skipPair == 0
-
-            fig1 = figure(1);
-            set(fig1,'Position',[0,0,1680,1080])
-            for k=1:3
-                channel = 'CFP';
-                if k == 2
-                    channel = 'YFP';
-                end
-                if k == 3
-                    channel = 'RFP' ;
-                end
-                fprintf('Experiment %d, Cell %d, channel %s: \n', i,j, k);
-
-                subplot(1,3,k);  
-                hold on;
-                    surf( E{i}.DataStruct(k,j).ydatacrpdR1{1}); 
-
-                hold off;
-                colormap hot;
-                shading interp;
-                view([0 90])
-
-                fitData = E{i}.DataStruct(k,j).x{:};
-                fprintf('\tSpot %.3f, %.3f+-%.3f, %.3f+-%.3f \n', fitData(1), fitData(2), fitData(3), fitData(4), fitData(5)) 
-
-                badSpots = E{i}.DataStruct(3,j).bx;
-                fprintf('\tRejected:\n');
-
-                for q = 1:length(badSpots)
-                    spot = badSpots{q}; 
-                    fprintf('\tSpot %.3f, %.3f+-%.3f, %.3f+-%.3f \n', spot(1), spot(2), spot(3), spot(4), spot(5)) 
-                end 
-            end
-
-            fitData = E{i}.DataStruct(1,j).ld{:}; 
-            pairwiseC = [pairwiseC, [fitData(2) fitData(4)]'];
-
-            fitData = E{i}.DataStruct(2,j).ld{:};
-            pairwiseY = [pairwiseY, [fitData(2) fitData(4)]'];
-
-            fitData = E{i}.DataStruct(3,j).ld{:};
-            pairwiseR = [pairwiseR, [fitData(2) fitData(4)]'];
-
-            pairwiseLength = [pairwiseLength, E{i}.DataStruct(1,j).CellLength]; 
-
-            pause; 
-        end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+        end   
         CellLength{i,j}=E{i}.DataStruct(1,j).CellLength;
 
 
@@ -165,25 +102,7 @@ for i=1:Nexp
 end
 close all;
 fprintf('Data has been loaded and re-formatted. Next, figures.\n'); 
-figNum = 0;
-if 0
-    %scatter [cell length, distance between brightest points for |YFP-CFP| (Tus-Dif), |YFP-RFP| (TUS-DNAN) and |YFP-RAND| (TUS random)]
-
-    lengthCR = sqrt( sum((pairwiseC - pairwiseR).^2));
-    lengthCY = sqrt( sum((pairwiseC - pairwiseY).^2));
-    lengthRY = sqrt( sum((pairwiseR - pairwiseY).^2));
-
-    scatter(pairwiseLength, lengthCR);
-    pause;
-    scatter(pairwiseLength, lengthCY);
-    pause;
-    scatter(pairwiseLength, lengthRY);
-
-
-    pause;close all; clc;
-    error('abort');
-end
-%error(' abort ' );
+figNum = 0; 
 figNum = figNum + 1; 
 fig0 = figure(figNum);
 histogram( Lcfp, linspace( floor(min(Lcfp)), ceil(max(Lcfp)), log(length(Lcfp))/log(2)+1));
