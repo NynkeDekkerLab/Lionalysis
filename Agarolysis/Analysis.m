@@ -1,4 +1,8 @@
 clear all
+folder='D:\RoyData\160205_Agar_Data';
+if strcmp( name, 'Atlantis') %Josko home PC
+    folder = 'K:\windows\data\RoyData\160205_Agar_Data';
+end
 
 dif1=load('1/RBIC/results/difresults.mat');
 dif2=load('2/RBIC/results/difresults.mat');
