@@ -5,9 +5,9 @@ clc
 %Location of files
 [~, name] = system('hostname'); 
 
-folder='D:\RoyData\160205_Agar_Data';
+folder='D:/RoyData/160205_Agar_Data';
 if strcmp( name, 'Atlantis') %Josko home PC
-    folder = 'K:\windows\data\RoyData\160205_Agar_Data';
+    folder = 'K:/windows/data/RoyData/160205_Agar_Data';
 end
 slash = '/';
 %read experiments sequentially
@@ -21,7 +21,7 @@ celllength = [];
 %   pure loading
 j=1; 
 for i=exps;
-    E{j}=load(strcat(folder,slash,num2str(i),slash,'Results.mat')); 
+    E{j} = load( sprintf('%s/%d/%s', folder, i, 'Results.mat'));
     j=j+1;
 end
 

@@ -3,9 +3,9 @@ clear
 clc
 
 [~, name] = system('hostname'); 
-%%folder='D:\RoyData\160205_Agar_Data';
+folder='D:/RoyData/160205_Agar_Data';
 if strcmp( name, 'Atlantis') %Josko home PC
-    folder = 'K:\windows\data\RoyData\160205_Agar_Data';
+    folder = 'K:/windows/data/RoyData/160205_Agar_Data';
 end
 slash = '/';
 screensize = get( groot, 'Screensize' );
@@ -128,7 +128,8 @@ all_Heatmap = false;
         CFP.filterval=1000;
 
         for i=k_channels;
-            E{i}=load(strcat(folder,slash,'Results_Ch',num2str(i),'.mat')); 
+            %E{i}=load(strcat(folder,slash,'Results_Ch',num2str(i),'.mat'));  
+            E{j} = load( sprintf('%s/%d/%s', folder, i, 'Results.mat'));
         end
 
         allCFP_L = [];
@@ -308,7 +309,7 @@ all_Heatmap = false;
                 % only have the nonzero elements now 
                 YFPSpotNumber{i,j}=zeros(1,frames{i}{j});
                 for L=1:size(bbnz,1)
-                YFPSpotNumber{i,j}(bbnz(L))=aanz(L);
+                    YFPSpotNumber{i,j}(bbnz(L))=aanz(L);
                 end
 
                 % do same for RFP
@@ -320,7 +321,7 @@ all_Heatmap = false;
                 RFPSpotNumber{i,j}=zeros(1,frames{i}{j});
 
                 for L=1:size(bbnz,1)
-                RFPSpotNumber{i,j}(bbnz(L))=aanz(L);
+                    RFPSpotNumber{i,j}(bbnz(L))=aanz(L);
                 end
             end
         end
