@@ -4,9 +4,11 @@ clc
 
 %Location of files
 [~, name] = system('hostname'); 
+    name = regexprep(name,'\s','');
 
 folder='D:/RoyData/160205_Agar_Data';
 if strcmp( name, 'Atlantis') %Josko home PC
+    fprintf('Welcome to %s. \n\n', name);
     folder = 'K:/windows/data/RoyData/160205_Agar_Data';
 end
 slash = '/';
