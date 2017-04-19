@@ -32,7 +32,8 @@ end
 DwellTime(DwellTime==max(DwellTime))=0;
 DwellTime=nonzeros(DwellTime);
 
-Nbins=15;
+numberDwellTime = length(DwellTime);
+Nbins=0.5*( sqrt(numberDwellTime) + log(numberDwellTime)/log(2) + 1);
 
 [histdata,XDT]=hist(DwellTime,Nbins+1);
 x=linspace(min(XDT),max(XDT),Nbins+1)';
