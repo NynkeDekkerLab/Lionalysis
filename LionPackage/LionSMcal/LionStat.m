@@ -1,7 +1,7 @@
 clc
 clear all
 close all
-
+%This file displays results.
 %% Load Results
 
 TraceNumbers=[9,11];
@@ -33,10 +33,9 @@ for i=1:size(Results,1)
 end
 
 %% plot histogram
-Nbins=15;
+Nbins=.5*( sqrt(length(IItot)) + log(length(IItot))/log(2) + 1);
 Xrightbound=3000;
-bins=linspace(0, Xrightbound, Nbins);
-IItotc=histc(IItot,bins);
+IItotc=histc(IItot,Nbins);
 fig1=figure(1);
 normalisedI=IItotc/(sum(IItotc));
 bar(bins, normalisedI)
